@@ -19,7 +19,7 @@ local setup_lsp = function (cfg, namespace_id)
     local my_bufnr = vim.api.nvim_get_current_buf()
     status_displayers[my_bufnr] = status.StatusDisplayer:new(namespace_id, my_bufnr, cfg.refresh_delay)
     vim.lsp.start({
-        cmd = { cfg.fstar_lsp_path },
+        cmd = cfg.fstar_lsp_path,
         root_dir = vim.fn.getcwd(), -- Use PWD as project root dir.
         handlers = {
             ["fstar-lsp/clearStatus"] = vim.lsp.with(
@@ -122,7 +122,7 @@ local setup_fstar_command = function ()
 end
 
 local default_config = {
-    fstar_lsp_path = "fstar-lsp",
+    fstar_lsp_path = {"fstar-lsp"},
     colors = {
         fully_checked = "#483D8B",
         lax_checked = "#483D00";
